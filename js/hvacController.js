@@ -354,14 +354,13 @@ hvacController.prototype.onHazardChanged = function (newStatus) {
         hazardTimer = setInterval(hazardLight.change, hazardTimerInterval);
     } else {
 
-        // todo: This will stop the hazard lights callback BUT WON'T TURN OFF THE LIGHTS IF THEY ARE ON!
         clearInterval(hazardTimer);
         hazardLight.off();  // Turn off the lights used for hazards...
         hazardTimer = null;
-        $("#hazard_btn").removeClass("on");
         if ($("#hazard_btn").hasClass("blink") === true) {
             $("#hazard_btn").removeClass("blink");
         }
+        $("#hazard_btn").removeClass("on");
     }
 };
 
@@ -546,7 +545,7 @@ hvacController.prototype.initButtons = function () {
         //    onHazardChanged
         hvacController.prototype.onHazardChanged(carIndicator.status.hazard);
     });
-    
+
     // A/C
     $("#fan_control_ac").bind('click', function () {
         carIndicator.setStatus("Fan", !carIndicator.status.fan);
